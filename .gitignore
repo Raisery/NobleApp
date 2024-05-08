@@ -1,0 +1,21 @@
+## bot ##
+
+# Generated directories:
+bot/.nyc_output/
+bot/coverage/
+bot/dist/
+bot/node_modules/
+bot/node_modules/
+# Project files:
+bot/*.sublime-*
+
+bot/.env
+
+## web ##
+
+web/node_modules/
+web/prisma/migrations
+web/prisma/dev.db
+web/prisma/dev.db-journal
+web/.env
+web/.next

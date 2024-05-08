@@ -1,0 +1,25 @@
+{
+  "name": "nobleapp",
+  "version": "1.0.0",
+  "description": "The NobleApp for discord",
+  "main": "none",
+  "scripts": {
+    "nobleapp-init": "echo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Raisery/NobleApp.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "nextjs",
+    "discordjs"
+  ],
+  "author": "raisery",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Raisery/NobleApp/issues"
+  },
+  "homepage": "https://github.com/Raisery/NobleApp#readme"
+}
