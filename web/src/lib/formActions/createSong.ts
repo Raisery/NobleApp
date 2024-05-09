@@ -28,7 +28,7 @@ export async function createSong(prevState: any, formData: FormData) {
 	console.log(potentialSimilarSongs)
 	let isDuplicate = false
 	for (const similarSong of potentialSimilarSongs) {
-		const similarBuffer = fs.readFileSync('../Storage/' + similarSong.id + '.mp3')
+		const similarBuffer = fs.readFileSync(storage + '/' + similarSong.id + '.mp3')
 		if (similarBuffer.compare(Buffer.from(fileBuffer)) === 0) {
 			isDuplicate = true
 		}
@@ -48,7 +48,7 @@ export async function createSong(prevState: any, formData: FormData) {
 
 	const folder = fs.readdirSync(storage)
 	console.log(folder)
-	fs.writeFileSync('../Storage/' + song.id + '.mp3', Buffer.from(fileBuffer))
+	fs.writeFileSync(storage + '/' + song.id + '.mp3', Buffer.from(fileBuffer))
 
 	return { message: 'Success' }
 }

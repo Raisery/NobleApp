@@ -8,6 +8,7 @@ import Loading from '../../ui/loading/loading'
 import { Guild } from 'discord.js'
 import { fetchDiscordUserGuilds } from '@/lib/fetchDiscordAPI'
 import PrimaryLinkButton from '@/ui/layout/PrimaryLinkButton'
+const invitationLink = process.env.INVITATION_LINK as string
 
 export default async function DashboardLayout({
 	children,
@@ -32,10 +33,7 @@ export default async function DashboardLayout({
 			<div className='flex flex-col items-center justify-center h-full'>
 				<div>
 					<p>None of your discord server are connected with bots</p>
-					<PrimaryLinkButton
-						target='_blank'
-						href='https://discord.com/oauth2/authorize?client_id=1230499719172591696&permissions=8&scope=bot'
-					>
+					<PrimaryLinkButton target='_blank' href={invitationLink}>
 						Invite bot
 					</PrimaryLinkButton>
 				</div>

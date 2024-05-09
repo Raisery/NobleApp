@@ -4,7 +4,8 @@ import path from 'path'
 import { createAudioResource, joinVoiceChannel } from '@discordjs/voice'
 import Logger from '../../utils/Logger'
 import { EventType } from '../../lib/definitions'
-const storagePath = path.join(process.cwd(), '../Storage/')
+const storage = process.env.STORAGE_FOLDER as string
+const storagePath = path.join(process.cwd(), storage)
 
 const voice = {
 	name: Events.VoiceStateUpdate,
