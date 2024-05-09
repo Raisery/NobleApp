@@ -1,11 +1,9 @@
 import { getServerSession } from 'next-auth'
-import { authConfig } from '../../../../../pages/api/auth/[...nextauth]'
 import prisma from '@/lib/prisma'
 import { redirect } from 'next/navigation'
-import SongSelector from '@/ui/layout/forms/SongSelector'
-import { EventType } from '@/lib/definition'
 import PrimaryLinkButton from '@/ui/layout/PrimaryLinkButton'
 import AddUserEventForm from '@/ui/layout/forms/AddUserEventForm'
+import { authConfig } from '@/app/api/auth/[...nextauth]/route'
 
 export default async function UserSettings({ params }: { params: { guildId: string } }) {
 	const { guildId } = params

@@ -1,13 +1,13 @@
 import prisma from '@/lib/prisma'
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
-import { authConfig } from '../../../pages/api/auth/[...nextauth]'
 import GuildTile from '@/ui/guild/GuildTile'
 import { Suspense } from 'react'
 import Loading from '../../ui/loading/loading'
 import { Guild } from 'discord.js'
 import { fetchDiscordUserGuilds } from '@/lib/fetchDiscordAPI'
 import PrimaryLinkButton from '@/ui/layout/PrimaryLinkButton'
+import { authConfig } from '../api/auth/[...nextauth]/route'
 const invitationLink = process.env.INVITATION_LINK as string
 
 export default async function DashboardLayout({
@@ -17,7 +17,7 @@ export default async function DashboardLayout({
 }>) {
 	const session = await getServerSession(authConfig)
 	if (!session) redirect('/connection-required')
-
+	console.log(session)
 	const user = await prisma.nobleUser.findUnique({
 		where: {
 			id: session.user.discordId,

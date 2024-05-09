@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth'
-import { authConfig } from '../../pages/api/auth/[...nextauth]'
 import PrimaryLinkButton from '@/ui/layout/PrimaryLinkButton'
+import { authConfig } from './api/auth/[...nextauth]/route'
 const invitationLink = process.env.INVITATION_LINK as string
 
 export default async function Home() {
@@ -9,6 +9,7 @@ export default async function Home() {
 		<div className='flex flex-col h-full w-full items-center'>
 			<div className='w-1/2'>
 				<PrimaryLinkButton href={invitationLink}>Invite the bot !</PrimaryLinkButton>
+				{session ? JSON.stringify(session) : ''}
 			</div>
 		</div>
 	)

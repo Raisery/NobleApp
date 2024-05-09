@@ -18,7 +18,7 @@ export const authConfig = {
 			clientId: discordId,
 			clientSecret: discordSecret,
 			authorization: {
-				params: { scope: 'identify guilds connections' },
+				params: { scope: 'identify guilds connections bot' },
 			},
 		}),
 	],
@@ -100,4 +100,5 @@ export const authConfig = {
 	},
 } satisfies NextAuthOptions
 
-export default NextAuth(authConfig)
+const handler = NextAuth(authConfig)
+export { handler as GET, handler as POST }

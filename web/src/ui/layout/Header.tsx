@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import LoginButton from '../auth/LoginButton'
 import { getServerSession } from 'next-auth'
-import { authConfig } from '../../../pages/api/auth/[...nextauth]'
 import UserMini from '../user/UserMini'
 import SecondaryLinkButton from './SecondaryLinkButton'
 import PrimaryLinkButton from './PrimaryLinkButton'
+import { authConfig } from '@/app/api/auth/[...nextauth]/route'
 
 const adminsEnv = process.env.ADMINS
 

@@ -1,8 +1,8 @@
 import prisma from '@/lib/prisma'
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
-import { authConfig } from '../../../../../pages/api/auth/[...nextauth]'
 import AddSongForm from '@/ui/layout/forms/AddSongForm'
+import { authConfig } from '@/app/api/auth/[...nextauth]/route'
 const storage = process.env.STORAGE_FOLDER
 
 export default async function AddSong({ params }: { params: { guildId: string } }) {

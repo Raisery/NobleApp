@@ -1,8 +1,8 @@
 import { getServerSession } from 'next-auth'
 import Image from 'next/image'
-import { authConfig } from '../../../pages/api/auth/[...nextauth]'
 import LogoutButton from '../auth/LogoutButton'
 import LinkButton from '../layout/SecondaryLinkButton'
+import { authConfig } from '@/app/api/auth/[...nextauth]/route'
 
 export default async function UserMini() {
 	const session = await getServerSession(authConfig)

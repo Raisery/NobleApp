@@ -2,10 +2,10 @@ import prisma from '@/lib/prisma'
 import GuildSettingsPreview from '@/ui/guild/GuildSettingPreview'
 import UserSettingsPreview from '@/ui/user/UserSettingsPreview'
 import { getServerSession } from 'next-auth'
-import { authConfig } from '../../../../pages/api/auth/[...nextauth]'
 import { redirect } from 'next/navigation'
 import { Suspense } from 'react'
 import Loading from '@/ui/loading/loading'
+import { authConfig } from '@/app/api/auth/[...nextauth]/route'
 
 export default async function GuildPreview({ params }: { params: { guildId: string } }) {
 	const session = await getServerSession(authConfig)

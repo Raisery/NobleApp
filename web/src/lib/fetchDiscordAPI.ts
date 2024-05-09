@@ -1,7 +1,7 @@
 import { Guild } from 'discord.js'
 import { getServerSession } from 'next-auth'
-import { authConfig } from '../../pages/api/auth/[...nextauth]'
 import sleep from './sleep'
+import { authConfig } from '@/app/api/auth/[...nextauth]/route'
 
 const nobleToken = process.env.DISCORD_BOT_TOKEN_NOBLEBOT
 

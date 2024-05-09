@@ -1,8 +1,8 @@
 import prisma from '@/lib/prisma'
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
-import { authConfig } from '../../../../../pages/api/auth/[...nextauth]'
 import GuildSettingsPreview from '@/ui/guild/GuildSettingPreview'
+import { authConfig } from '@/app/api/auth/[...nextauth]/route'
 
 export default async function GuildSettings({ params }: { params: { guildId: string } }) {
 	const { guildId } = params
