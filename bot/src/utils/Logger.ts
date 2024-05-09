@@ -4,33 +4,33 @@ import dayjs from 'dayjs'
 const format = '{tstamp} {tag} {txt}\n'
 
 function error(content: string, promise = {}) {
-	write(content, chalk.bgRed.white, 'ERROR', true)
+	write(content, chalk.bgRed.white, '  ERROR  ', true)
 	console.log(promise)
 }
 
 function warn(content: string | Error, promise = {}) {
-	write(content, chalk.bgYellow.black, 'WARN', false)
+	write(content, chalk.bgYellow.black, '  WARN   ', false)
 	console.log(promise)
 }
 
 function typo(content: string) {
-	write(content, chalk.bgCyan.black, 'TYPO', false)
+	write(content, chalk.bgCyan.black, '  TYPO   ', false)
 }
 
 function command(content: string) {
-	write(content, chalk.bgMagenta.black, 'COMMAND', false)
+	write(content, chalk.bgMagenta.black, ' COMMAND ', false)
 }
 
 function event(content: string) {
-	write(content, chalk.bgGreen.black, 'EVENT', false)
+	write(content, chalk.bgGreen.black, '  EVENT  ', false)
 }
 
 function client(content: string) {
-	write(content, chalk.bgBlue.black, 'CLIENT', false)
+	write(content, chalk.bgBlue.black, ' CLIENT  ', false)
 }
 
 function info(content: string) {
-	write(content, chalk.bgWhite.black, 'INFO', false)
+	write(content, chalk.bgWhite.black, '  INFO   ', false)
 }
 
 function database(content: string) {

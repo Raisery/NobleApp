@@ -13,7 +13,8 @@ const ready = {
 		if (!client.user) return //impossible but typescript...
 
 		// add db verification (maybe bot are not anymore in some guild or users left)
-		await client.guilds.cache.forEach(async guild => {
+		for (const cachedGuild of client.guilds.cache) {
+			const guild = cachedGuild[1]
 			let usersRecovered = 0
 			if (guild.id === process.env.DEV_GUILD_ID) {
 				guild.commands.set(app.commands.map(cmd => cmd.data.toJSON()))
@@ -57,7 +58,7 @@ const ready = {
 				usersRecovered++
 			}
 			Logger.info(' - ' + guild.name + ' restauré avec ' + usersRecovered + ' utilisateurs')
-		})
+		}
 
 		Logger.client(` - Connecté en tant que ${client.user.tag}! avec l'id : ${client.user.id}`)
 		client.user.setActivity('Un épisode de GTO', { type: ActivityType.Watching })
