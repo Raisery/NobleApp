@@ -73,6 +73,7 @@
 		"ffmpeg": "^0.0.4",
 		"ffmpeg-static": "^5.2.0",
 		"sitka": "^1.1.1",
-		"tweetnacl": "^1.0.3"
+		"tweetnacl": "^1.0.3",
+		"uuid": "^7.0.3"
 	}
 }
