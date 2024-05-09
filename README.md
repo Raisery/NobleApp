@@ -27,6 +27,11 @@ discord
 
 ## Setup dev environnment
 
+In both schema.prisma files (/web + /bot) you must change the db provider to match your database
+(mysql, sqlite, ...).
+
+Refer to https://www.prisma.io/docs/orm/overview/databases/mysql#connection-url
+
 ### In the web folder:
 
 ```bash
@@ -73,20 +78,9 @@ npx prisma generate
 npm run serve
 ```
 
-## To run both in the same prompt (not recommended) :
-
-```bash
-npm run app-dev
-```
-
-## Building app
-
-```bash
-npm web-build
-npm bot-build
-```
-
 ## Contributing
 
 Contributions are welcome! If you have ideas for improvements or want to add new features, feel free
 to fork the repository and submit a pull request.
+
+# It's my first project, so if you have any comments or suggestions, feel free to contact me at lucas1.gerard@gmail.com.
