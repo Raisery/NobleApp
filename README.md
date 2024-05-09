@@ -37,7 +37,20 @@ Refer to https://www.prisma.io/docs/orm/overview/databases/mysql#connection-url
 ```bash
 cd web/
 npm install
-npx prisma migrate dev
+```
+
+**_If you use sqlite as provider_**
+
+```bash
+npx prisma migrate dev //run this command each time you change your schema.prisma
+npx prisma generate
+```
+
+**_If you use mysql or other as provider_**
+
+```bash
+npx prisma db push
+npx prisma migrate dev //run this command each time you change your schema.prisma
 npx prisma generate
 ```
 
@@ -71,11 +84,8 @@ npm install
 ### If you have somes issues with database, dont type _npx prisma migrate dev_ in this folder.
 
 ```bash
-npx prisma db pull
-
+npx prisma db pull //run this command each time you change your schema.prisma
 npx prisma generate
-
-npm run serve
 ```
 
 ## Contributing
