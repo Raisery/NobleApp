@@ -2,6 +2,7 @@
 import { File } from 'buffer'
 import fs from 'fs'
 import prisma from '../prisma'
+import { revalidatePath } from 'next/cache'
 const storage = process.env.STORAGE_FOLDER
 
 export async function createSong(prevState: any, formData: FormData) {
@@ -34,7 +35,7 @@ export async function createSong(prevState: any, formData: FormData) {
 		}
 	}
 	if (isDuplicate) {
-		return { message: 'Duplicate file detected' }
+		return { message: 'Duplicate file detected', status: 'NOK' }
 	}
 	const song = await prisma.song.create({
 		data: {
@@ -49,6 +50,6 @@ export async function createSong(prevState: any, formData: FormData) {
 	const folder = fs.readdirSync(storage)
 	console.log(folder)
 	fs.writeFileSync(storage + '/' + song.id + '.mp3', Buffer.from(fileBuffer))
-
-	return { message: 'Success' }
+	revalidatePath('/dashboard')
+	return { message: 'Success', status: 'OK' }
 }

@@ -1,6 +1,8 @@
 'use server'
 import prisma from '../prisma'
 import { EventType } from '../definition'
+import { redirect } from 'next/navigation'
+import { revalidatePath } from 'next/cache'
 
 export async function createUserEvent(prevState: any, formData: FormData) {
 	const data = {
@@ -17,16 +19,15 @@ export async function createUserEvent(prevState: any, formData: FormData) {
 		include: { voiceEvents: { where: { guildId: data.guildId } } },
 	})
 
-	if (!user) return { message: 'User not found' }
+	if (!user) return { message: 'User not found', status: 'NOK' }
 
 	await updateEvent(EventType.CONNECTION, Number(data.connection), user, data.guildId)
 	await updateEvent(EventType.DECONNECTION, Number(data.deconnection), user, data.guildId)
 	await updateEvent(EventType.OPEN_STREAM, Number(data.openStream), user, data.guildId)
 	await updateEvent(EventType.CLOSE_STREAM, Number(data.closeStream), user, data.guildId)
 
-	console.log(user)
-
-	return { message: 'Success' }
+	revalidatePath('/dashboard')
+	return { message: 'Success', status: 'OK' }
 }
 
 async function updateEvent(

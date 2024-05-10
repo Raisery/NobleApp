@@ -3,9 +3,11 @@ import { useFormState } from 'react-dom'
 import SongSelector from './SongSelector'
 import { EventType } from '@/lib/definition'
 import { createUserEvent } from '@/lib/formActions/createUserEvent'
+import { redirect, useRouter } from 'next/navigation'
 
 const initalState = {
 	message: '',
+	status: 'NOK',
 }
 
 export default function AddUserEventForm({
@@ -34,7 +36,7 @@ export default function AddUserEventForm({
 	}[]
 }) {
 	const [state, formAction] = useFormState(createUserEvent, initalState)
-
+	if (state.status === 'OK') redirect('/dashboard/' + guildId)
 	return (
 		<form action={formAction} className='flex flex-col p-4'>
 			<input type='text' name='userId' value={userId} className='hidden' readOnly />

@@ -1,10 +1,12 @@
 'use client'
 import { createSong } from '@/lib/formActions/createSong'
+import { redirect, useRouter } from 'next/navigation'
 import { FormEvent, useState } from 'react'
 import { useFormState } from 'react-dom'
 
 const initalState = {
 	message: '',
+	status: 'NOK',
 }
 
 export default function AddSongForm({
