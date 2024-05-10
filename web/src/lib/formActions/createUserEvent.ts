@@ -48,7 +48,8 @@ async function updateEvent(
 	guildId: string
 ) {
 	const connectionEvent = user.voiceEvents.find(event => event.type === eventType)
-	if (!connectionEvent) {
+
+	if (!connectionEvent && songId > 0) {
 		await prisma.userVoiceEvent.create({
 			data: {
 				isActive: true,
@@ -58,10 +59,14 @@ async function updateEvent(
 				userId: user.id,
 			},
 		})
-	} else {
+	} else if (connectionEvent && songId > 0) {
 		await prisma.userVoiceEvent.update({
 			where: { id: connectionEvent.id },
 			data: { songId: songId },
+		})
+	} else if (connectionEvent) {
+		await prisma.userVoiceEvent.delete({
+			where: { id: connectionEvent.id },
 		})
 	}
 }
