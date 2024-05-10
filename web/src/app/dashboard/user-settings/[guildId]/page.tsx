@@ -42,6 +42,7 @@ export default async function UserSettings({ params }: { params: { guildId: stri
 					userId={user.id}
 					guildId={guildId}
 					availableSongs={availableSongs}
+					userEvents={user.voiceEvents}
 				/>
 			</div>
 			<div className=' h-10'>

@@ -18,31 +18,24 @@ export default async function GuildPreview({ params }: { params: { guildId: stri
 	if (!guild) return <div>{"ERROR : CAN'T RETRIEVE GUILD IN DATABASE"}</div>
 
 	return (
-		<div className='flex gap-4 w-full h-full'>
-			<div className='w-full h-full bg-black/10 rounded-md'>
-				<div className='flex flex-col h-full w-full items-center'>
-					<h2
-						className={
-							' text-4xl text-white/50 border-4 border-t-0 p-4 rounded-b-md border-white/20'
-						}
-					>
-						{guild.name}
-					</h2>
-					<div className='w-full h-full flex flex-col items-center justify-around '>
-						<Suspense fallback={<Loading />}>
-							<GuildSettingsPreview
-								guildId={guildId}
-								isOwner={guild.ownerId === session.user.discordId}
-							/>
-						</Suspense>
-						<Suspense fallback={<Loading />}>
-							<UserSettingsPreview
-								userId={session.user.discordId}
-								guildId={guildId}
-							/>
-						</Suspense>
-					</div>
-				</div>
+		<div className='flex flex-col w-full items-center'>
+			<h2
+				className={
+					' text-4xl text-white/50 border-4 border-t-0 p-4 rounded-b-md border-white/20 mb-4'
+				}
+			>
+				{guild.name}
+			</h2>
+			<div className='w-full h-full flex flex-col items-center justify-around gap-4 '>
+				<Suspense fallback={<Loading />}>
+					<GuildSettingsPreview
+						guildId={guildId}
+						isOwner={guild.ownerId === session.user.discordId}
+					/>
+				</Suspense>
+				<Suspense fallback={<Loading />}>
+					<UserSettingsPreview userId={session.user.discordId} guildId={guildId} />
+				</Suspense>
 			</div>
 		</div>
 	)

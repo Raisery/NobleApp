@@ -30,7 +30,7 @@ export default async function DashboardLayout({
 	if (!user) return 'Reset logging please'
 	if (!user.guilds[0])
 		return (
-			<div className='flex flex-col items-center justify-center h-full'>
+			<div className='flex flex-col items-center justify-center h-full overflow-y-auto'>
 				<div>
 					<p>None of your discord server are connected with bots</p>
 					<PrimaryLinkButton target='_blank' href={invitationLink}>
@@ -65,8 +65,10 @@ export default async function DashboardLayout({
 					</div>
 				</div>
 
-				<div className='w-2/3 bg-white/30 rounded-md p-4 overflow-hidden '>
-					<Suspense fallback={<Loading />}>{children}</Suspense>
+				<div className='w-2/3 h-full overflow-hidden bg-white/30 rounded-md p-4'>
+					<div className='w-full h-full bg-black/10 pb-4 rounded-md overflow-y-auto overflow-x-hidden'>
+						<Suspense fallback={<Loading />}>{children}</Suspense>
+					</div>
 				</div>
 			</>
 		</div>

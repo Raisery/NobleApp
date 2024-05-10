@@ -19,3 +19,7 @@ web/prisma/dev.db
 web/prisma/dev.db-journal
 web/.env
 web/.next
+
+## storage ##
+
+storage/
