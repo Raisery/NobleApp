@@ -44,7 +44,13 @@ export default function AddSongForm({
 			<input type='number' name='duration' value={duration} className='hidden' readOnly />
 			<div className='flex flex-col gap-4'>
 				<label htmlFor='title'>Titre :</label>
-				<input type='text' name='title' id='title' className='text-black p-2 rounded-md' />
+				<input
+					type='text'
+					name='title'
+					id='title'
+					className='text-black p-2 rounded-md'
+					required
+				/>
 			</div>
 
 			<div className='flex flex-col gap-4'>
@@ -54,6 +60,8 @@ export default function AddSongForm({
 					name='artist'
 					id='artist'
 					className='text-black p-2 rounded-md'
+					defaultValue={'INCONNU'}
+					required
 				/>
 			</div>
 
@@ -65,6 +73,7 @@ export default function AddSongForm({
 					id='file'
 					className='rounded-md self-center'
 					onChange={handleSong}
+					required
 				/>
 			</div>
 			<p>

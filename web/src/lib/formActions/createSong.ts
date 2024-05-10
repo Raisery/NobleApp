@@ -34,8 +34,14 @@ export async function createSong(prevState: any, formData: FormData) {
 			isDuplicate = true
 		}
 	}
+	const titleTaken = await prisma.song.findMany({
+		where: { title: data.title as string, guildId: data.guildId as string },
+	})
 	if (isDuplicate) {
 		return { message: 'Duplicate file detected', status: 'NOK' }
+	}
+	if (titleTaken) {
+		return { message: 'Duplicate title detected', status: 'NOK' }
 	}
 	const song = await prisma.song.create({
 		data: {
