@@ -37,6 +37,24 @@ export async function createSong(prevState: any, formData: FormData) {
 	const titleTaken = await prisma.song.findMany({
 		where: { title: data.title as string, guildId: data.guildId as string },
 	})
+
+	const durationLimit = (
+		await prisma.guild.findUnique({
+			select: { durationLimit: true },
+			where: { id: data.guildId as string },
+		})
+	)?.durationLimit
+	if (durationLimit && durationLimit.getTime() < new Date(duration).getTime()) {
+		return {
+			message:
+				'Song is too long. limit : ' +
+				durationLimit.getMinutes() +
+				'm ' +
+				durationLimit.getSeconds() +
+				's expected',
+			status: 'NOK',
+		}
+	}
 	if (isDuplicate) {
 		return { message: 'Duplicate file detected', status: 'NOK' }
 	}

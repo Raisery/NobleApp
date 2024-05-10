@@ -1,6 +1,5 @@
 'use client'
 import { createSong } from '@/lib/formActions/createSong'
-import { redirect, useRouter } from 'next/navigation'
 import { FormEvent, useState } from 'react'
 import { useFormState } from 'react-dom'
 
@@ -77,7 +76,7 @@ export default function AddSongForm({
 				/>
 			</div>
 			<p>
-				duration = {new Date(duration * 1000).getMinutes()}:
+				Duration = {new Date(duration * 1000).getMinutes()}min
 				{new Date(duration * 1000).getSeconds()}
 			</p>
 			<p>{state?.message}</p>
