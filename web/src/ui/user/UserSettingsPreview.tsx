@@ -1,7 +1,9 @@
 import { EventType } from '@/lib/definition'
 import prisma from '@/lib/prisma'
 import PrimaryLinkButton from '../layout/PrimaryLinkButton'
-
+import SongPlayer from '../song/SongPlayer'
+import path from 'path'
+const storage = path.join((process.cwd(), process.env.STORAGE_FOLDER) as string)
 export default async function UserSettingsPreview({
 	userId,
 	guildId,
@@ -14,7 +16,6 @@ export default async function UserSettingsPreview({
 		include: { voiceEvents: { where: { guildId: guildId }, include: { song: true } } },
 	})
 
-	console.log(user)
 	if (!user) return 'USER NOT FOUND'
 	const userEvents = user.voiceEvents
 
@@ -31,19 +32,19 @@ export default async function UserSettingsPreview({
 			<h3 className='text-4xl w-full text-center'>Paramètres utilisateur</h3>
 			<div className='flex justify-between w-full'>
 				<p>Son de début de stream : </p>
-				<div>{openStream ? openStream.song.title : 'AUCUN'}</div>
+				<div>{openStream ? <SongPlayer song={openStream.song} /> : 'AUCUN'}</div>
 			</div>
 			<div className='flex justify-between w-full'>
 				<p>Son de fin de stream : </p>
-				<div>{closeStream ? closeStream.song.title : 'AUCUN'}</div>
+				<div>{closeStream ? <SongPlayer song={closeStream.song} /> : 'AUCUN'}</div>
 			</div>
 			<div className='flex justify-between w-full'>
 				<p>Son de connexion : </p>
-				<div>{onConnection ? onConnection.song.title : 'AUCUN'}</div>
+				<div>{onConnection ? <SongPlayer song={onConnection.song} /> : 'AUCUN'}</div>
 			</div>
 			<div className='flex justify-between w-full'>
 				<p>Son de deconnexion : </p>
-				<div>{onDeconnection ? onDeconnection.song.title : 'AUCUN'}</div>
+				<div>{onDeconnection ? <SongPlayer song={onDeconnection.song} /> : 'AUCUN'}</div>
 			</div>
 			<div className=' h-10 w-2/5'>
 				<PrimaryLinkButton href={'/dashboard/user-settings/' + guildId}>

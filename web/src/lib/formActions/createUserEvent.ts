@@ -13,7 +13,6 @@ export async function createUserEvent(prevState: any, formData: FormData) {
 		guildId: formData.get('guildId') as string,
 		userId: formData.get('userId') as string,
 	}
-	console.log(data)
 	const user = await prisma.nobleUser.findUnique({
 		where: { id: data.userId },
 		include: { voiceEvents: { where: { guildId: data.guildId } } },

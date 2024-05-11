@@ -17,7 +17,6 @@ export default async function DashboardLayout({
 }>) {
 	const session = await getServerSession(authConfig)
 	if (!session) redirect('/connection-required')
-	console.log(session)
 	const user = await prisma.nobleUser.findUnique({
 		where: {
 			id: session.user.discordId,

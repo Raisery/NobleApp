@@ -98,6 +98,4 @@ function playSong(
 	resource.volume?.setVolume(0.15)
 	app.subscription = connection.subscribe(app.player)
 	app.player.play(resource)
-
-	console.log(songPath)
 }

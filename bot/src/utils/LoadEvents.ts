@@ -50,8 +50,6 @@ export default async function LoadEvents(app: NobleApp) {
 					app.player.on(
 						event.name as AudioPlayerStatus,
 						(...args: Parameters<typeof event.execute>) => {
-							console.log('TRIGGER')
-							console.log(...args)
 							event.execute(...args)
 						}
 					)
