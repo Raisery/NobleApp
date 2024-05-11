@@ -23,6 +23,7 @@ model Account {
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@index([userId], map: "Account_userId_fkey")
 }
 
 model Session {
@@ -31,6 +32,8 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], map: "Session_userId_fkey")
 }
 
 model User {
@@ -84,6 +87,10 @@ model UserVoiceEvent {
   guild    Guild     @relation("GuildToUserVoiceEvent", fields: [guildId], references: [id])
   song     Song      @relation("UserVoiceEventToSong", fields: [songId], references: [id])
   user     NobleUser @relation("NobleUserToUserVoiceEvent", fields: [userId], references: [id])
+
+  @@index([guildId], map: "UserVoiceEvent_guildId_fkey")
+  @@index([songId], map: "UserVoiceEvent_songId_fkey")
+  @@index([userId], map: "UserVoiceEvent_userId_fkey")
 }
 
 model Song {
@@ -93,10 +100,14 @@ model Song {
   artist          String
   authorId        String
   guildId         String
+  volume          Float
   guildvoiceevent GuildVoiceEvent? @relation("SongToGuildVoiceEvent")
-  guild           Guild            @relation("GuildsToSong", fields: [guildId], references: [id])
   author          NobleUser        @relation("NobleUserToSong", fields: [authorId], references: [id])
+  guild           Guild            @relation("GuildsToSong", fields: [guildId], references: [id])
   userVoiceEvents UserVoiceEvent[] @relation("UserVoiceEventToSong")
+
+  @@index([authorId], map: "Song_authorId_fkey")
+  @@index([guildId], map: "Song_guildId_fkey")
 }
 
 model GuildVoiceEvent {
@@ -105,8 +116,10 @@ model GuildVoiceEvent {
   guildId  String
   songId   Int     @unique
   isActive Boolean
-  song     Song    @relation("SongToGuildVoiceEvent", fields: [songId], references: [id])
   guild    Guild   @relation("GuildToGuildVoiceEvent", fields: [guildId], references: [id])
+  song     Song    @relation("SongToGuildVoiceEvent", fields: [songId], references: [id])
+
+  @@index([guildId], map: "GuildVoiceEvent_guildId_fkey")
 }
 
 model Music {
@@ -116,9 +129,12 @@ model Music {
   duration  DateTime
   authorId  String
   guildId   String
-  guild     Guild      @relation("GuildToMusic", fields: [guildId], references: [id])
   author    NobleUser  @relation("NobleUserToMusic", fields: [authorId], references: [id])
+  guild     Guild      @relation("GuildToMusic", fields: [guildId], references: [id])
   playlists Playlist[] @relation("MusicToPlaylist")
+
+  @@index([authorId], map: "Music_authorId_fkey")
+  @@index([guildId], map: "Music_guildId_fkey")
 }
 
 model Playlist {
@@ -126,7 +142,10 @@ model Playlist {
   name     String
   authorId String
   guildId  String
-  guild    Guild     @relation("GuildToPlaylist", fields: [guildId], references: [id])
   author   NobleUser @relation("NobleUserToPlaylist", fields: [authorId], references: [id])
+  guild    Guild     @relation("GuildToPlaylist", fields: [guildId], references: [id])
   musics   Music[]   @relation("MusicToPlaylist")
+
+  @@index([authorId], map: "Playlist_authorId_fkey")
+  @@index([guildId], map: "Playlist_guildId_fkey")
 }

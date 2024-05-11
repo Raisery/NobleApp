@@ -22,7 +22,11 @@ export default function SongSelector({ songs, event, label, selected }: SongSele
 			</option>
 		)
 	})
-	options.push(<option value={-1}>{'Aucun'}</option>)
+	options.push(
+		<option key={'Empty' + event} value={-1}>
+			{'Aucun'}
+		</option>
+	)
 	if (!selected) selected = -1
 	return (
 		<div className='text-black'>

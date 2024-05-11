@@ -14,6 +14,7 @@ export async function createSong(prevState: any, formData: FormData) {
 		userId: formData.get('userId'),
 		guildId: formData.get('guildId'),
 		duration: formData.get('duration'),
+		volume: formData.get('volume'),
 	}
 	const duration = (data.duration as unknown as number) * 1000
 	// Test it out:
@@ -26,7 +27,6 @@ export async function createSong(prevState: any, formData: FormData) {
 			guildId: data.guildId as string,
 		},
 	})
-	console.log(potentialSimilarSongs)
 	let isDuplicate = false
 	for (const similarSong of potentialSimilarSongs) {
 		const similarBuffer = fs.readFileSync(storage + '/' + similarSong.id + '.mp3')
@@ -68,11 +68,11 @@ export async function createSong(prevState: any, formData: FormData) {
 			authorId: data.userId as string,
 			guildId: data.guildId as string,
 			artist: data.artist as string,
+			volume: data.volume as unknown as number,
 		},
 	})
 
 	const folder = fs.readdirSync(storage)
-	console.log(folder)
 	fs.writeFileSync(storage + '/' + song.id + '.mp3', Buffer.from(fileBuffer))
 	revalidatePath('/dashboard')
 	return { message: 'Success', status: 'OK' }

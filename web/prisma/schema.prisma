@@ -100,6 +100,7 @@ model Song {
   artist          String
   authorId        String
   guildId         String
+  volume          Float
   guildvoiceevent GuildVoiceEvent? @relation("SongToGuildVoiceEvent")
   author          NobleUser        @relation("NobleUserToSong", fields: [authorId], references: [id])
   guild           Guild            @relation("GuildsToSong", fields: [guildId], references: [id])

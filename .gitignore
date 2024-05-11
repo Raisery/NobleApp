@@ -23,3 +23,6 @@ web/.next
 ## storage ##
 
 storage/
+
+# Environment configuration
+**/.env
