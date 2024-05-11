@@ -9,8 +9,8 @@ import SessionProvider from './SessionProvider'
 import { authConfig } from './api/auth/[...nextauth]/route'
 
 export const metadata: Metadata = {
-	title: 'Discordify',
-	description: 'Web interface to manage the Discordify bot on your server',
+	title: 'NobleApp',
+	description: 'Web interface to manage the NobleApp bots on your server',
 }
 
 const Jersey = Jersey_25({ weight: '400', subsets: ['latin'] })
