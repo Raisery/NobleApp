@@ -10,6 +10,7 @@ type props = {
 		artist: string
 		authorId: string
 		guildId: string
+		volume: number
 	}
 }
 
@@ -23,7 +24,7 @@ export default function SongPlayer({ song }: props) {
 			song.title + song.id + song.guildId
 		) as HTMLAudioElement
 
-		audioPlayer.volume = 0.15
+		audioPlayer.volume = song.volume
 		if (isPlaying) {
 			audioPlayer.pause()
 			audioPlayer.currentTime = 0

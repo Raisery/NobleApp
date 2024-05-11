@@ -95,9 +95,15 @@ export default function AddSongForm({
 					required
 				/>
 			</div>
-			<div>
+			<div className='flex w-full justify-between'>
 				<label htmlFor='volume'>Volume :{Number.parseFloat(volume)}%</label>
-				<input type='range' name='volume' id='volume' onInput={handleVolumeChange} />
+				<input
+					className='w-2/3'
+					type='range'
+					name='volume'
+					id='volume'
+					onInput={handleVolumeChange}
+				/>
 			</div>
 			<p>
 				Duration = {new Date(duration * 1000).getMinutes()}min
