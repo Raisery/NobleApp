@@ -58,7 +58,7 @@ export async function createSong(prevState: any, formData: FormData) {
 	if (isDuplicate) {
 		return { message: 'Duplicate file detected', status: 'NOK' }
 	}
-	if (titleTaken) {
+	if (titleTaken.length > 0) {
 		return { message: 'Duplicate title detected', status: 'NOK' }
 	}
 	const song = await prisma.song.create({
