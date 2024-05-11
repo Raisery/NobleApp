@@ -45,7 +45,7 @@ const voice = {
 				return
 			case 'DISCONNECTION':
 				if (!deconnectionSong) return
-				playSong(deconnectionSong, newState)
+				playSong(deconnectionSong, oldState)
 				return
 			case 'SWITCH':
 				return
