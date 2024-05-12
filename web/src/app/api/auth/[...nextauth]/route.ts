@@ -18,7 +18,7 @@ export const authConfig = {
 			clientId: discordId,
 			clientSecret: discordSecret,
 			authorization: {
-				params: { scope: 'identify guilds connections bot' },
+				params: { scope: 'identify guilds connections' },
 			},
 		}),
 	],
