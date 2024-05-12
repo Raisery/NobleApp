@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -84,9 +84,9 @@ model UserVoiceEvent {
   songId   Int
   guildId  String
   isActive Boolean
-  guild    Guild     @relation("GuildToUserVoiceEvent", fields: [guildId], references: [id])
-  song     Song      @relation("UserVoiceEventToSong", fields: [songId], references: [id])
   user     NobleUser @relation("NobleUserToUserVoiceEvent", fields: [userId], references: [id])
+  song     Song      @relation("UserVoiceEventToSong", fields: [songId], references: [id])
+  guild    Guild     @relation("GuildToUserVoiceEvent", fields: [guildId], references: [id])
 
   @@index([guildId], map: "UserVoiceEvent_guildId_fkey")
   @@index([songId], map: "UserVoiceEvent_songId_fkey")
@@ -102,8 +102,8 @@ model Song {
   guildId         String
   volume          Float
   guildvoiceevent GuildVoiceEvent? @relation("SongToGuildVoiceEvent")
-  author          NobleUser        @relation("NobleUserToSong", fields: [authorId], references: [id])
   guild           Guild            @relation("GuildsToSong", fields: [guildId], references: [id])
+  author          NobleUser        @relation("NobleUserToSong", fields: [authorId], references: [id])
   userVoiceEvents UserVoiceEvent[] @relation("UserVoiceEventToSong")
 
   @@index([authorId], map: "Song_authorId_fkey")
@@ -116,8 +116,8 @@ model GuildVoiceEvent {
   guildId  String
   songId   Int     @unique
   isActive Boolean
-  guild    Guild   @relation("GuildToGuildVoiceEvent", fields: [guildId], references: [id])
   song     Song    @relation("SongToGuildVoiceEvent", fields: [songId], references: [id])
+  guild    Guild   @relation("GuildToGuildVoiceEvent", fields: [guildId], references: [id])
 
   @@index([guildId], map: "GuildVoiceEvent_guildId_fkey")
 }
@@ -129,8 +129,8 @@ model Music {
   duration  DateTime
   authorId  String
   guildId   String
-  author    NobleUser  @relation("NobleUserToMusic", fields: [authorId], references: [id])
   guild     Guild      @relation("GuildToMusic", fields: [guildId], references: [id])
+  author    NobleUser  @relation("NobleUserToMusic", fields: [authorId], references: [id])
   playlists Playlist[] @relation("MusicToPlaylist")
 
   @@index([authorId], map: "Music_authorId_fkey")
@@ -142,8 +142,8 @@ model Playlist {
   name     String
   authorId String
   guildId  String
-  author   NobleUser @relation("NobleUserToPlaylist", fields: [authorId], references: [id])
   guild    Guild     @relation("GuildToPlaylist", fields: [guildId], references: [id])
+  author   NobleUser @relation("NobleUserToPlaylist", fields: [authorId], references: [id])
   musics   Music[]   @relation("MusicToPlaylist")
 
   @@index([authorId], map: "Playlist_authorId_fkey")

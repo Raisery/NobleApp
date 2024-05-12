@@ -30,7 +30,7 @@ export default async function RootLayout({
 						id='root-layout'
 						className={
 							Jersey.className +
-							' w-full h-full overflow-hidden rounded-lg bg-gradient-linear flex flex-col text-xl'
+							' w-full h-full overflow-hidden rounded-lg bg-gradient-radial animate-solar bg-xl flex flex-col text-xl'
 						}
 					>
 						<Header />
