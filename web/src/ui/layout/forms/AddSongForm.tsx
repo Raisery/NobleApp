@@ -114,7 +114,7 @@ export default function AddSongForm({
 				Play
 			</button>
 			<p>{state?.message}</p>
-			<button type='submit' className=''>
+			<button type='submit' className='border'>
 				Enregistrer
 			</button>
 		</form>

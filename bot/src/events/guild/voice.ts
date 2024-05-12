@@ -99,7 +99,6 @@ function playSong(
 	const resource = createAudioResource(songPath, {
 		inlineVolume: true,
 	})
-	console.log(song.volume)
 	resource.volume?.setVolume(song.volume)
 	app.subscription = connection.subscribe(app.player)
 	app.player.play(resource)

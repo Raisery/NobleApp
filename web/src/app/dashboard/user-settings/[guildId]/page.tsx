@@ -33,22 +33,28 @@ export default async function UserSettings({ params }: { params: { guildId: stri
 			</div>
 		)
 	return (
-		<div className='h-full w-full flex flex-col justify-around'>
-			<div>
-				<h2>{user.name}</h2>
-			</div>
-			<div>
-				<AddUserEventForm
-					userId={user.id}
-					guildId={guildId}
-					availableSongs={availableSongs}
-					userEvents={user.voiceEvents}
-				/>
-			</div>
-			<div className=' h-10'>
-				<PrimaryLinkButton href={'/dashboard/add-song/' + guildId}>
-					Ajouter un son
-				</PrimaryLinkButton>
+		<div className='flex flex-col items-center'>
+			<h2
+				className={
+					' text-4xl text-white/50 border-4 border-t-0 p-4 rounded-b-md border-white/20 mb-4'
+				}
+			>
+				{user.name}
+			</h2>
+			<div className='flex flex-col items-center w-full gap-4'>
+				<div className='flex flex-col w-2/3 items-center'>
+					<AddUserEventForm
+						userId={user.id}
+						guildId={guildId}
+						availableSongs={availableSongs}
+						userEvents={user.voiceEvents}
+					/>
+				</div>
+				<div className=' h-10'>
+					<PrimaryLinkButton href={'/dashboard/add-song/' + guildId}>
+						Ajouter un son
+					</PrimaryLinkButton>
+				</div>
 			</div>
 		</div>
 	)
