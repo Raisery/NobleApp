@@ -44,8 +44,6 @@ export default function GuildTile({ guild }: GuildProps) {
 			<div className='h-4/5 w-1 bg-white/20 rounded-xl'></div>
 			<div className='w-full'>
 				<p className={' text-xl'}>{guild.name}</p>
-				<p>{guild.id}</p>
-				<p>{currentGuildID}</p>
 			</div>
 			<div className='h-4/5 w-1 bg-white/20 rounded-xl'></div>
 			<div className='flex gap-2'>

@@ -58,13 +58,13 @@ export default async function DashboardLayout({
 	return (
 		<div className='w-ful h-full  p-6 flex gap-4' id='dashboard-layout'>
 			<>
-				<div className='w-1/3 bg-black/30 rounded-md p-2 overflow-hidden'>
+				<div className='w-1/3 bg-gradient-linear rounded-md p-2 overflow-hidden'>
 					<div className='h-full min-h-screen overflow-y-auto overflow-x-hidden p-8 flex flex-col gap-3'>
 						{Guilds}
 					</div>
 				</div>
 
-				<div className='w-2/3 h-full overflow-hidden bg-black/30 rounded-md p-4'>
+				<div className='w-2/3 h-full overflow-hidden bg-gradient-linear rounded-md p-4'>
 					<div className='w-full h-full bg-black/10 pb-4 rounded-md overflow-y-auto overflow-x-hidden'>
 						<Suspense fallback={<Loading />}>{children}</Suspense>
 					</div>
