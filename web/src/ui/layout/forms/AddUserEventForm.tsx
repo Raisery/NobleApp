@@ -38,7 +38,10 @@ export default function AddUserEventForm({
 	const [state, formAction] = useFormState(createUserEvent, initalState)
 	if (state.status === 'OK') redirect('/dashboard/' + guildId)
 	return (
-		<form action={formAction} className='flex flex-col p-4'>
+		<form
+			action={formAction}
+			className='flex flex-col p-4 w-full gap-4 border-4 rounded-md border-white/30'
+		>
 			<input type='text' name='userId' value={userId} className='hidden' readOnly />
 			<input type='text' name='guildId' value={guildId} className='hidden' readOnly />
 			<SongSelector
@@ -66,7 +69,12 @@ export default function AddUserEventForm({
 				label='Son de fermeture de stream :'
 			/>
 			{state.message}
-			<button type='submit'>Enregistrer</button>
+			<button
+				type='submit'
+				className='border-4 rounded-md border-white/30 hover:border-[#8729B3]/30 hover:text-[#8729B3]/30'
+			>
+				Enregistrer
+			</button>
 		</form>
 	)
 }

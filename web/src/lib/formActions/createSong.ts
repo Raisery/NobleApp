@@ -68,7 +68,7 @@ export async function createSong(prevState: any, formData: FormData) {
 			authorId: data.userId as string,
 			guildId: data.guildId as string,
 			artist: data.artist as string,
-			volume: data.volume as unknown as number,
+			volume: (data.volume as unknown as number) / 100,
 		},
 	})
 

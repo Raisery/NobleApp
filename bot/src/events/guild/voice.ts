@@ -27,35 +27,38 @@ const voice = {
 				userId: oldState.member?.user.id,
 				guildId: oldState.guild.id,
 			},
+			include: {
+				song: true,
+			},
 		})
 		if (!guildEvents) Logger.info('There is no events for ' + oldState.guild.name)
 		if (!userEvents) Logger.info('There is no adverts for ' + oldState.member?.user.username)
-		const connectionSong = userEvents.find(event => event.type === EventType.CONNECTION)
-		const deconnectionSong = userEvents.find(event => event.type === EventType.DECONNECTION)
-		const onpenStreamSong = userEvents.find(event => event.type === EventType.OPEN_STREAM)
-		const closeStreamSong = userEvents.find(event => event.type === EventType.CLOSE_STREAM)
+		const connection = userEvents.find(event => event.type === EventType.CONNECTION)
+		const deconnection = userEvents.find(event => event.type === EventType.DECONNECTION)
+		const onpenStream = userEvents.find(event => event.type === EventType.OPEN_STREAM)
+		const closeStream = userEvents.find(event => event.type === EventType.CLOSE_STREAM)
 
 		switch (getEventTriggered(oldState, newState)) {
 			case 'BOT':
 				return
 			case 'CONNECTION':
-				if (!connectionSong) return
-				playSong(connectionSong, newState)
+				if (!connection) return
+				playSong(connection.song, newState)
 				Logger.event(' - CONNECTION : ' + newState.member.user.username)
 				return
 			case 'DISCONNECTION':
-				if (!deconnectionSong) return
-				playSong(deconnectionSong, oldState)
+				if (!deconnection) return
+				playSong(deconnection.song, oldState)
 				return
 			case 'SWITCH':
 				return
 			case 'STREAM_ON':
-				if (!onpenStreamSong) return
-				playSong(onpenStreamSong, newState)
+				if (!onpenStream) return
+				playSong(onpenStream.song, newState)
 				return
 			case 'STREAM_OFF':
-				if (!closeStreamSong) return
-				playSong(closeStreamSong, newState)
+				if (!closeStream) return
+				playSong(closeStream.song, newState)
 				return
 		}
 	},
@@ -76,15 +79,16 @@ function getEventTriggered(o: VoiceState, n: VoiceState) {
 function playSong(
 	song: {
 		id: number
-		type: string
-		userId: string
-		songId: number
+		title: string
+		duration: Date
+		artist: string
+		authorId: string
 		guildId: string
-		isActive: boolean
+		volume: number
 	},
 	n: VoiceState
 ) {
-	const songPath = path.join(storagePath, song.songId + '.mp3')
+	const songPath = path.join(storagePath, song.id + '.mp3')
 	const app = NobleApp.get()
 	if (!n.channelId) return
 	const connection = joinVoiceChannel({
@@ -95,7 +99,7 @@ function playSong(
 	const resource = createAudioResource(songPath, {
 		inlineVolume: true,
 	})
-	resource.volume?.setVolume(0.15)
+	resource.volume?.setVolume(song.volume)
 	app.subscription = connection.subscribe(app.player)
 	app.player.play(resource)
 }
