@@ -14,8 +14,8 @@ type GuildProps = {
 export default function GuildTile({ guild }: GuildProps) {
 	const currentGuildID = usePathname()?.split('/').pop()
 
-	let select = ' border-[#FFAB96]/80 hover:bg-[#8729B3]/20 hover:scale-101'
-	if (currentGuildID === guild.id) select = 'border-[#8729B3]/30 bg-[#8729B3]/20 scale-101'
+	let select = ' border-primary/80 hover:bg-secondary/20 hover:scale-101'
+	if (currentGuildID === guild.id) select = 'border-secondary/30 bg-secondary/20 scale-101'
 
 	return (
 		<Link

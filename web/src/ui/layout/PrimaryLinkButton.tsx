@@ -18,7 +18,7 @@ export default function PrimaryLinkButton({
 			target={target}
 			href={href}
 			passHref={passHref}
-			className='flex h-full justify-center items-center p-4 rounded-md bg-[#FFAB96]/70'
+			className='flex h-full justify-center items-center p-4 rounded-md bg-primary/70'
 		>
 			{children}
 		</Link>
