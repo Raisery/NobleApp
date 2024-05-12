@@ -71,7 +71,7 @@ export default function AddUserEventForm({
 			{state.message}
 			<button
 				type='submit'
-				className='border-4 rounded-md border-white/30 hover:border-[#8729B3]/30 hover:text-[#8729B3]/30'
+				className='border-4 rounded-md border-white/30 hover:border-secondary/30 hover:text-secondary/30'
 			>
 				Enregistrer
 			</button>

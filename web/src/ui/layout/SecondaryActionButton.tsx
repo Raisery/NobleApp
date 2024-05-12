@@ -8,7 +8,7 @@ export default function SecondaryActionButton({ onClick, children }: LinkedButto
 	return (
 		<button
 			onClick={onClick}
-			className='flex h-full justify-center items-center p-4 rounded-md bg-[#8729B3]/70'
+			className='flex h-full justify-center items-center p-4 rounded-md bg-secondary/70'
 		>
 			{children}
 		</button>

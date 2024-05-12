@@ -26,6 +26,12 @@ const config: Config = {
 			scale: {
 				'101': '1.01',
 			},
+			colors: {
+				primary: '#FFAB96',
+				secondary: '#8729B3',
+				special: '#',
+				dark: '#',
+			},
 		},
 	},
 	plugins: [],
